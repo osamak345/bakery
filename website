@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,8 +124,8 @@
     <div class="product-list">
       <div class="product">
         <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Sourdough Bread">
-        <h3>Sourdough</h3>
-        <p>Crusty on the outside, soft and tangy on the inside.</p>
+        <h3>Cake</h3>
+        <p>a sweetened baked food, usually made with flour, eggs, sugar, and a leavening agent.</p>
       </div>
       <div class="product">
         <img src="https://media.istockphoto.com/id/947886300/photo/loaf-of-bread-still-life.jpg?s=1024x1024&w=is&k=20&c=4EAsf7DPFcHQfTVvHNb5WQtwbVuHLYbBI-cYHXI-nxE=" alt="Whole Wheat Bread">
@@ -142,25 +143,54 @@
   <section class="content gallery" id="gallery">
     <h2>Gallery</h2>
     <div class="gallery-images">
-      <img src="https://images.pexels.com/photos/2253636/pexels-photo-2253636.jpeg" alt="Bakery interior">
+      <img src="https://images.pexels.com/photos/2253636/pexels-photo-2253636.jpeg" alt="Bakery interior"> 
       <img src="https://images.pexels.com/photos/2128535/pexels-photo-2128535.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Baking bread">
       <img src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Fresh loaves">
       <img src="https://images.pexels.com/photos/564883/pexels-photo-564883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Bread on shelves">
+      <img src="https://plus.unsplash.com/premium_photo-1675788939058-850af470cd36?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bakery dough">
+      <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?q=80&w=2448&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bakery dish">  
     </div>
   </section>
 
   <section class="content" id="contact">
     <h2>Contact Us</h2>
-    <p>Email: info@goldencrustbakery.com</p>
-    <p>Phone: (123) 456-7890</p>
-    <p>Visit us at 123 Bread Street, Bakerstown</p>
+    <form method="POST" action="/contact">
+      <input type="text" name="name" placeholder="Your Name" required><br><br>
+      <input type="email" name="email" placeholder="Your Email" required><br><br>
+      <textarea name="message" placeholder="Your Message" required></textarea><br><br>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
+  
 
   <footer>
     &copy; 2025 Golden Crust Bakery. All rights reserved.
   </footer>
 
   <script>
+    const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const app = express();
+const PORT = 3000;
+
+// Serve static files (HTML, CSS, JS) from "public"
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Handle contact form submission
+app.post('/contact', (req, res) => {
+  const { name, email, message } = req.body;
+  console.log('New message from:', name, email);
+  console.log('Message:', message);
+  res.send('Thank you for your message!');
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+
     // Simple interactivity: Highlight active nav link
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
@@ -170,5 +200,7 @@
       });
     });
   </script>
+
 </body>
 </html>
+
